@@ -28,7 +28,8 @@ class EmployeeController extends Controller
 
         $employees = $query
             ->orderBy('id', 'asc')
-            ->get();
+            ->paginate(5)
+            ->withQueryString();
 
         $departments = Employee::query()
             ->whereNotNull('department')

@@ -123,6 +123,25 @@
       margin: 0;
     }
 
+    nav[role="navigation"] {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    nav[role="navigation"] a,
+    nav[role="navigation"] span {
+      display: inline-block;
+      padding: 7px 11px;
+      border: 1px solid #cbd5e1;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #1f2937;
+    }
+
     @media (max-width: 650px) {
       .table-wrap {
         overflow-x: auto;

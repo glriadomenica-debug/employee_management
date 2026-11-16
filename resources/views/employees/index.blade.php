@@ -89,5 +89,8 @@
         </tbody>
       </table>
     </div>
+    <div style="margin-top:20px;">
+      {{ $employees->links() }}
+    </div>
   </div>
 @endsection
