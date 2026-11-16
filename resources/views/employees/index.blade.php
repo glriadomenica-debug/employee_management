@@ -13,6 +13,30 @@
       </a>
     </div>
 
+    <form method="GET" action="{{ route('employees.index') }}"
+      style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;">
+
+      <input type="text" name="search" placeholder="Search employee name..." value="{{ request('search') }}"
+        style="flex:1; min-width:180px; margin:0;">
+
+      <select name="department"
+        style="flex:1; min-width:160px; padding:10px; border:1px solid #cbd5e1; border-radius:6px;">
+        <option value="">All departments</option>
+
+        @foreach ($departments as $department)
+          <option value="{{ $department }}" {{ request('department') === $department ? 'selected' : '' }}>
+            {{ $department }}
+          </option>
+        @endforeach
+      </select>
+
+      <button type="submit" class="btn">Search</button>
+
+      <a href="{{ route('employees.index') }}" class="btn btn-secondary">
+        Reset
+      </a>
+    </form>
+
     @if (session('success'))
       <div class="alert">{{ session('success') }}</div>
     @endif
