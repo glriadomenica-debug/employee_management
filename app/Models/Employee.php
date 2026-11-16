@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Employee extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'full_name',
         'department',
+        'department_id',
         'salary',
         'hire_date',
     ];
@@ -22,5 +21,10 @@ class Employee extends Model
             'salary' => 'decimal:2',
             'hire_date' => 'date',
         ];
+    }
+
+    public function departmentRecord(): BelongsTo
+    {
+        return $this->belongsTo(Department::class, 'department_id');
     }
 }
