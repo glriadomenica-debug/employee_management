@@ -2,6 +2,24 @@
 @section('title', 'Employees')
 @section('content')
   <div class="card">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:15px; margin-bottom:25px;">
+
+      <div style="padding:20px; background:#eff6ff; border-radius:10px;">
+        <p>Total Employees</p>
+        <h2>{{ $totalEmployees }}</h2>
+      </div>
+
+      <div style="padding:20px; background:#f0fdf4; border-radius:10px;">
+        <p>Average Salary</p>
+        <h2>{{ $averageSalary !== null ? '$' . number_format((float) $averageSalary, 2) : '-' }} </h2>
+      </div>
+
+      <div style="padding:20px; background:#fff7ed; border-radius:10px;">
+        <p>Departments</p>
+        <h2>{{ $totalDepartments }}</h2>
+      </div>
+
+    </div>
     <div class="toolbar">
       <div>
         <h2>Employees</h2>

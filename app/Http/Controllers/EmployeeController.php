@@ -38,9 +38,22 @@ class EmployeeController extends Controller
             ->orderBy('department')
             ->pluck('department');
 
+        $totalEmployees = Employee::count();
+
+        $averageSalary = Employee::whereNotNull('salary')
+            ->avg('salary');
+
+        $totalDepartments = Employee::whereNotNull('department')
+            ->where('department', '<>', '')
+            ->distinct('department')
+            ->count('department');
+
         return view('employees.index', compact(
             'employees',
-            'departments'
+            'departments',
+            'totalEmployees',
+            'averageSalary',
+            'totalDepartments'
         ));
     }
 
