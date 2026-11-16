@@ -77,7 +77,7 @@
             <tr>
               <td>{{ $loop->iteration }}</td>
               <td>{{ $employee->full_name }}</td>
-              <td>{{ $employee->department ?? '-' }}</td>
+              <td>{{ $employee->departmentRecord?->name ?? 'Unassigned' }}</td>
               <td>{{ $employee->salary !== null ? '$' . number_format((float) $employee->salary, 2) : '-' }}</td>
               <td>{{ $employee->hire_date?->format('Y-m-d') ?? '-' }}</td>
               <td>
