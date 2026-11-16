@@ -8,35 +8,40 @@ use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+    /**
+     * Display employees with search, department filter, and statistics.
+     */
     public function index(Request $request)
     {
         $query = Employee::with('departmentRecord');
 
-        // Search employees by name
+        // Search by employee name.
         if ($request->filled('search')) {
             $query->where(
                 'full_name',
                 'ILIKE',
-                '%' . $request->search . '%'
+                '%' . $request->input('search') . '%'
             );
         }
 
-        // Filter employees by department ID
+        // Filter by department.
         if ($request->filled('department_id')) {
             $query->where(
                 'department_id',
-                $request->department_id
+                $request->input('department_id')
             );
         }
 
+        // Get employees with pagination.
         $employees = $query
-            ->orderBy('id', 'desc')
+            ->orderByDesc('id')
             ->paginate(5)
             ->withQueryString();
 
-        // Load departments from PostgreSQL
+        // Get departments dynamically from PostgreSQL.
         $departments = Department::orderBy('name')->get();
 
+        // Dashboard statistics.
         $totalEmployees = Employee::count();
 
         $averageSalary = Employee::whereNotNull('salary')
@@ -53,6 +58,9 @@ class EmployeeController extends Controller
         ));
     }
 
+    /**
+     * Show the Add Employee form.
+     */
     public function create()
     {
         $departments = Department::orderBy('name')->get();
@@ -60,6 +68,9 @@ class EmployeeController extends Controller
         return view('employees.create', compact('departments'));
     }
 
+    /**
+     * Save a new employee.
+     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -76,6 +87,9 @@ class EmployeeController extends Controller
             ->with('success', 'Employee created successfully.');
     }
 
+    /**
+     * Show the Edit Employee form.
+     */
     public function edit(Employee $employee)
     {
         $departments = Department::orderBy('name')->get();
@@ -86,6 +100,9 @@ class EmployeeController extends Controller
         ));
     }
 
+    /**
+     * Update an existing employee.
+     */
     public function update(Request $request, Employee $employee)
     {
         $validated = $request->validate([
@@ -102,6 +119,9 @@ class EmployeeController extends Controller
             ->with('success', 'Employee updated successfully.');
     }
 
+    /**
+     * Delete an employee.
+     */
     public function destroy(Employee $employee)
     {
         $employee->delete();
