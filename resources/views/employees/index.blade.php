@@ -5,7 +5,7 @@
     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:15px; margin-bottom:25px;">
 
       <div style="padding:20px; background:#eff6ff; border-radius:10px;">
-        <p>Total Employees</p>
+        <p>Total Employees change</p>
         <h2>{{ $totalEmployees }}</h2>
       </div>
 
