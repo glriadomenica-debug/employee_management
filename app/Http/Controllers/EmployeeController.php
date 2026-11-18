@@ -34,7 +34,7 @@ class EmployeeController extends Controller
 
         // Get employees with pagination.
         $employees = $query
-            ->orderByDesc('id')
+            ->orderBy('id','asc')
             ->paginate(5)
             ->withQueryString();
 
