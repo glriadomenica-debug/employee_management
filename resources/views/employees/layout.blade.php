@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@yield('title', 'Employee Management')</title>
+  <link rel="icon" href="https://www.shutterstock.com/image-vector/employee-vector-icon-logo-sign-260nw-2676671729.jpg" />
+
   <style>
     * {
       box-sizing: border-box;
